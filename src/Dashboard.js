@@ -47,6 +47,10 @@ export default class CoverFlowDemo extends Component {
         this.state = values;
     }
 
+    onChange = (item) => {
+        console.log(`'Current Item', ${item}`);
+    }
+
     getCards(count) {
         const res = [];
         const keys = Object.keys(CARDS);
@@ -95,7 +99,7 @@ export default class CoverFlowDemo extends Component {
                         <Text style={styles.textStyle}>Pravin, What's on your mind?</Text>
                     </View>
                     <View style={{ paddingTop: 20 }}>
-                        <Circular /> 
+                        <Circular />
                     </View>
 
                 </View>
