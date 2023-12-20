@@ -1,7 +1,7 @@
 // GmailIdScreen.js
 
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, Alert, StatusBar } from 'react-native';
 
 const GmailIdScreen = ({ navigation }) => {
   const [gmailId, setGmailId] = useState('');
@@ -26,6 +26,7 @@ const GmailIdScreen = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
+      <StatusBar backgroundColor="#01377d" barStyle="light-content" />
       <TextInput style={styles.input}
         underlineColorAndroid="transparent"
         placeholder="Email"

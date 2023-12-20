@@ -7,14 +7,12 @@ import LoginScreen from './src/LoginScreen';
 import Dashboard from './src/Dashboard';
 import GmailIdScreen from './src/GmailIdScreen';
 import AppInstructionsScreen from './src/AppInstructionsScreen';
-import Carousel from './src/components/CustomCard'
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer> 
       <Stack.Navigator initialRouteName="GmailIdScreen">
-        <Stack.Screen name="Carousel" component={Carousel} options={{headerShown: false}}/>
         <Stack.Screen name="GmailIdScreen" component={GmailIdScreen} options={{headerShown: false}}/>
         <Stack.Screen name="InstructionsScreen" component={AppInstructionsScreen} options={{headerShown: false}} />
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>

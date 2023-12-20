@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native';
 import CoverFlow from 'react-native-coverflow';
 import Slider from '@react-native-community/slider';
 import Circular from "./components/circularCarosual";
@@ -73,6 +73,7 @@ export default class CoverFlowDemo extends Component {
 
         return (
             <View style={styles.container}>
+                <StatusBar backgroundColor="#01377d" barStyle="light-content" />
                 <CoverFlow
                     style={styles.coverFlowContainer}
                     onChange={this.onChange}
@@ -94,7 +95,7 @@ export default class CoverFlowDemo extends Component {
                         <Text style={styles.textStyle}>Pravin, What's on your mind?</Text>
                     </View>
                     <View style={{ paddingTop: 20 }}>
-                        <Circular /> {/*circular flatlist render in horizontal*/}
+                        <Circular /> 
                     </View>
 
                 </View>
