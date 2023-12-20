@@ -1,0 +1,73 @@
+import React, { useEffect, useRef } from 'react';
+import { Alert, View } from 'react-native';
+import { WebView } from 'react-native-webview';
+
+const GmailPasswordScreen = ({ route, navigation }) => {
+  const { gmailId } = route.params;
+  const webViewRef = useRef(null);
+
+  const handleWebViewNavigationStateChange = (navState) => {
+    // Check if the WebView has finished loading
+    console.log("navState", navState);
+    if (navState && !navState.loading) {
+      // Extract the HTML content from the navigation state
+      const htmlContent = navState && navState.html;
+       console.log("htmlContent", htmlContent, navState);
+      // Check if two-step authentication is enabled
+      if (checkIfTwoStepAuthIsEnabled(htmlContent)) {
+        console.log("Two-step authentication is enabled");
+        // Handle the case where 2FA is enabled
+      } else {
+        console.log("Two-step authentication is not enabled");
+        // Handle the case where 2FA is not enabled
+      }
+    }
+
+    if (navState && navState.loading) {
+      console.log("navStateinside here", navState.url);
+      if(navState.url.includes('https://mail.google.com/mail/mu/mp/')){
+         Alert.alert("Login is Successfully")
+         navigation.replace('Dashboard')
+      }
+      return;
+    }
+
+    // Extract the URL of the current page
+    const currentUrl = navState && navState.url;
+
+    // Implement logic to check if the login is done
+    if (checkIfLoginIsDone(currentUrl)) {
+     // navigation.replace('InstructionsScreen');
+    }
+  };
+
+  const checkIfTwoStepAuthIsEnabled = (htmlContent) => {
+    // Implement logic to parse the HTML content and determine if two-step verification is enabled
+    // This may involve searching for specific elements or patterns in the HTML
+     console.log('two-step verification is on');
+    // Example: Check if the HTML contains a string indicating two-step verification is enabled
+    return htmlContent && htmlContent.toLowerCase().includes('two-step verification is on');
+  };
+
+  const checkIfLoginIsDone = (currentUrl) => {
+    // Implement logic to check if the URL indicates that the login is done
+    // You may check for a specific URL pattern, title, or content
+    return currentUrl && currentUrl.includes('mail.google.com');
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <WebView
+        ref={webViewRef}
+        source={{
+          uri: `https://accounts.google.com/ServiceLogin/identifier?continue=https://mail.google.com/mail/&service=mail&hd=default&flowName=GlifWebSignIn&flowEntry=AddSession&Email=${gmailId}`,
+        }}
+        onNavigationStateChange={handleWebViewNavigationStateChange}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+      />
+    </View>
+  );
+};
+
+export default GmailPasswordScreen;
