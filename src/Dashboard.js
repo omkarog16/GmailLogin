@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image, Alert } from 'react-native';
 import CoverFlow from 'react-native-coverflow';
 import Slider from '@react-native-community/slider';
 import Circular from "./components/circularCarosual";
-import CustomCard from "./components/CustomCard";
 const CARDS = {
     '1C': { imageSource: require('./images/images.jpeg'), text: 'Card 1' },
     '1S': { imageSource: require('./images/images1.jpeg'), text: 'Card 2' },
@@ -48,14 +47,6 @@ export default class CoverFlowDemo extends Component {
         this.state = values;
     }
 
-    onChange = (item) => {
-        console.log(`'Current Item', ${item}`);
-    }
-
-    onPress = (item) => {
-        Alert.alert(`Pressed on current item ${item}`);
-    }
-
     getCards(count) {
         const res = [];
         const keys = Object.keys(CARDS);
@@ -74,7 +65,7 @@ export default class CoverFlowDemo extends Component {
                 </View>
             );
         }
-        return res;
+        return res; // push all image and render it
     }
 
     render() {
@@ -103,7 +94,7 @@ export default class CoverFlowDemo extends Component {
                         <Text style={styles.textStyle}>Pravin, What's on your mind?</Text>
                     </View>
                     <View style={{ paddingTop: 20 }}>
-                        <Circular />
+                        <Circular /> {/*circular flatlist render in horizontal*/}
                     </View>
 
                 </View>

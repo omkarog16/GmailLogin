@@ -9,6 +9,7 @@ const GmailIdScreen = ({ navigation }) => {
   const handleNext = () => {
     // Basic email validation
     if(gmailId.trim() === ''){
+      //if email id not enter
       Alert.alert('Please enter a Gmail ID.');
       return;
     }

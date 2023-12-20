@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Linking, TouchableOpacity, Image } from 'react-
 
 const AppInstructionsScreen = ({navigation}) => {
   const openLink = () => {
-    Linking.openURL('https://myaccount.google.com/')
+    Linking.openURL('https://myaccount.google.com/') //it will navigate to gmail myaccount
   }
 
   const goBack = () => {

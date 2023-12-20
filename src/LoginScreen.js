@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Alert, View } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { saveData } from './config/AsyncStorage';
 const GmailPasswordScreen = ({ route, navigation }) => {
   const { gmailId } = route.params;
   const webViewRef = useRef(null);
@@ -13,7 +12,7 @@ const GmailPasswordScreen = ({ route, navigation }) => {
       ? 'https://myaccount.google.com/security'
       : `https://accounts.google.com/ServiceLogin/identifier?continue=https://mail.google.com/mail/&service=mail&hd=default&flowName=GlifWebSignIn&flowEntry=AddSession&Email=${gmailId}`;
 
-    setURL(initialUrl)
+    setURL(initialUrl) //chnage URL link in webview
   }, [security, gmailId]);
 
   const handleWebViewNavigationStateChange = ({ loading, url, html }) => {
@@ -44,18 +43,14 @@ const GmailPasswordScreen = ({ route, navigation }) => {
     if (match) {
       const extractedData = JSON.parse(match[0]);
       if (extractedData.includes("2-Step Verification is off")) {
-        console.log("onboard InstructionsScreen");
-        navigation.replace('InstructionsScreen')
+        navigation.replace('InstructionsScreen') //if 2-step vertification is not enabled
       } else {
-        console.log("onboard Screen");
-        navigation.replace('Dashboard')
+        navigation.replace('Dashboard') //if 2-step vertification is  enabled
       }
-      console.log('Extracted Data:', extractedData);
     } else {
       if(security) {
-      console.log("onboard Screen");
+      console.log("onboard Screen"); //if 2-step vertification is enabled
       navigation.replace('Dashboard')
-      console.log('No match found.');
       }
     }
 

@@ -8,23 +8,11 @@ import Dashboard from './src/Dashboard';
 import GmailIdScreen from './src/GmailIdScreen';
 import AppInstructionsScreen from './src/AppInstructionsScreen';
 import Carousel from './src/components/CustomCard'
-import { getData } from './src/config/AsyncStorage';
 const Stack = createStackNavigator();
 
-
-
 const App = () => {
-  const [naviagte, setNavigate] = useState(true)
-  useEffect(()=>{
-    onNaviagtionToDashboard()
-  }, [])
-
-  const onNaviagtionToDashboard = async() => {
-     const res = await getData('Dashboard')
-
-    }
   return (
-    <NavigationContainer>
+    <NavigationContainer> 
       <Stack.Navigator initialRouteName="GmailIdScreen">
         <Stack.Screen name="Carousel" component={Carousel} options={{headerShown: false}}/>
         <Stack.Screen name="GmailIdScreen" component={GmailIdScreen} options={{headerShown: false}}/>
